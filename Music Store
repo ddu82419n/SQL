@@ -1,0 +1,29 @@
+--Create a database for a musical instruments store
+CREATE TABLE store (
+    id INTEGER,
+    instrument TEXT,
+    maker TEXT,
+    quantity INTEGER,
+    year_manufactured INTEGER,
+    country_of_origin TEXT,
+    price INTEGER
+);
+
+INSERT INTO store VALUES (1, 'Violin', 'Minolli', 13, 1982, 'Italy', 322);
+INSERT INTO store VALUES (2, 'Violin', 'Yamaha', 3, 1999, 'Japan', 1442.20 );
+INSERT INTO store VALUES (3, 'Guitar', 'Fender', 6, 2011, 'England', 900.04);
+INSERT INTO store VALUES (4, 'Flute', 'Ube', 8, 1932, 'Germany', 487.23);
+
+--display the database ordered by price, from low to high.
+SELECT *
+FROM store
+ORDER BY price;
+
+--show how many instruments were manufactured before the year 1980.
+SELECT instrument, maker, year_manufactured, quantity
+FROM store
+WHERE year_manufactured < 1980;
+
+--what is the most expensive instrument sold in the store?
+SELECT MAX(price) AS 'Priciest Item', instrument, maker, quantity
+FROM store;
