@@ -1,0 +1,27 @@
+CREATE TABLE store (
+    id INTEGER PRIMARY KEY,
+    item TEXT,
+    brand TEXT,
+    price INTEGER,
+    origin INTEGER,
+    color INTEGER
+);
+INSERT INTO store VALUES (1,'bra', 'Calvin Klein', 42, 'Vietnam', 'Red');
+
+INSERT INTO store VALUES (2,'skirt', 'Ann Taylor', 58, 'Bangladesh', 'Beige');
+
+INSERT INTO store VALUES (3,'tights', 'Bugles', 12, 'Chian', 'Green');
+
+INSERT INTO store VALUES (4,'hosiery', 'Calvin Klein', 22, 'Vietnam', 'black');
+
+INSERT INTO store VALUES (5,'scarf', 'Hermes', 142, 'Thailand', 'Mixed');
+
+INSERT INTO store VALUES (6,'socks', 'Gap', 13, 'Vietnam', 'Blue');
+
+INSERT INTO store VALUES (7,'tank top', 'Target', 4, 'India', 'Plaid');
+
+
+SELECT * FROM store
+ORDER BY price;
+
+SELECT MIN(price) AS 'Lowest Price Item', item FROM store;
