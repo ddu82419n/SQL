@@ -1,3 +1,5 @@
+--Create a clothing store database
+
 CREATE TABLE store (
     id INTEGER PRIMARY KEY,
     item TEXT,
@@ -6,6 +8,7 @@ CREATE TABLE store (
     origin INTEGER,
     color INTEGER
 );
+
 INSERT INTO store VALUES (1,'bra', 'Calvin Klein', 42, 'Vietnam', 'Red');
 
 INSERT INTO store VALUES (2,'skirt', 'Ann Taylor', 58, 'Bangladesh', 'Beige');
@@ -20,8 +23,21 @@ INSERT INTO store VALUES (6,'socks', 'Gap', 13, 'Vietnam', 'Blue');
 
 INSERT INTO store VALUES (7,'tank top', 'Target', 4, 'India', 'Plaid');
 
-
+--display the database ordered by price.
 SELECT * FROM store
 ORDER BY price;
 
-SELECT MIN(price) AS 'Lowest Price Item', item FROM store;
+
+--what is the average price of items in the store?
+SELECT AVG(price) AS 'Average Price of Items' 
+FROM store;
+
+--which item is the most expensive? 
+SELECT MAX(price) AS 'Maximum Price of Item', item, brand 
+FROM store;
+
+--which item is the least expensive?
+SELECT MIN(price) AS 'Lowest Price Item', item, brand 
+FROM store;
+
+
