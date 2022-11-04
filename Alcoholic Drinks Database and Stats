@@ -1,0 +1,82 @@
+--Create a alcoholic drink database
+
+CREATE TABLE drinks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER,
+    daily_drinks INTEGER,
+    yearly_dui INTEGER
+
+);
+
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('John S.', 20, 4, 7);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Bari W.', 34, 2, 0);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Will S.', 53, 5, 3);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Trevor M.', 23, 3, 0);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Greg A.', 52, 5, 8);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Kris J.', 67, 3, 1);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Scott D.', 39, 8, 14);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Kourtney K.', 39, 3, 18);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Travis B.', 44, 6, 8);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Kylie M.', 48, 4, 9);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Michelle T.', 37, 3, 1);
+INSERT INTO drinks (name, age, daily_drinks, yearly_dui) VALUES ('Anthony S.', 41, 2, 0);
+
+--Calculate number of average daily alcoholic drinks from all drinkers
+
+SELECT AVG(daily_drinks) FROM drinks; 
+
+--Calculate average age of all drinkers, round number
+
+SELECT ROUND(AVG(age)) FROM drinks; 
+
+--Calculate who drinks the most and how many daily drinks
+
+SELECT name, MAX(daily_drinks) FROM drinks;
+
+--Group each person into what level drinker they are, from low to high
+
+SELECT name, daily_drinks, 
+    CASE
+        WHEN daily_drinks < 2 THEN 'low drinker'
+        WHEN daily_drinks < 4 THEN 'moderate drinker'
+        WHEN daily_drinks < 6 THEN 'heavy drinker'
+        ELSE 'insane drunk'
+    END AS drink_level
+FROM drinks;
+
+--Determine how many people are in the 'insane drunk' category
+
+SELECT COUNT(*),
+    CASE
+        WHEN daily_drinks < 2 THEN 'low drinker'
+        WHEN daily_drinks < 4 THEN 'moderate drinker'
+        WHEN daily_drinks < 6 THEN 'heavy drinker'
+        ELSE 'insane drunk'
+    END AS drink_level
+    FROM drinks
+GROUP BY drink_level
+HAVING drink_level LIKE '%insane%';
+
+--Group each person into DUI categories, from low to high
+
+SELECT name, yearly_dui,
+    CASE
+        WHEN yearly_dui < 1 THEN 'no DUI'
+        WHEN yearly_dui < 3 THEN 'low DUI'
+        WHEN yearly_dui < 6 THEN 'moderate DUI'
+        ELSE 'high DUI'
+    END as dui_level
+FROM drinks
+
+--Count how many people are in each DUI group
+
+SELECT COUNT(*),
+    CASE
+        WHEN yearly_dui < 1 THEN 'no DUI'
+        WHEN yearly_dui < 3 THEN 'low DUI'
+        WHEN yearly_dui < 6 THEN 'moderate DUI'
+        ELSE 'high DUI'
+    END as dui_level
+FROM drinks
+GROUP BY dui_level;
